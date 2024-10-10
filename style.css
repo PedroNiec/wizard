@@ -1,0 +1,16 @@
+h1{
+    text-align: center;
+}
+
+body{
+    text-align: center;
+}
+
+.caixa{
+    width: 50%;
+    height: 100%;
+    border: 20px solid #000; 
+    padding: 1px;         
+    margin-top: 130px;
+    margin-left: 23%; 
+}

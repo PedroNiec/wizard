@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alteração Wizard</title>
+    <link href="style.css" rel="stylesheet">
+
+
+</head>
+<body>
+    
+<div class="caixa">
+    <h1>Cálculo de Proporcional</h1>
+    <form id="form">
+        <label for="planoAntigo">Valor do Plano Antigo:</label>
+        <input type="number" id="planoAntigo" required>
+        <br><br>
+        
+        <label for="planoNovo">Valor do Plano Novo:</label>
+        <input type="number" id="planoNovo" required>
+        <br><br>
+        
+        <label for="dataFixa">Data de Vencimento Fixa:</label>
+        <input type="text" id="dataFixa" placeholder="Data Fixa" required>
+        <br><br>
+        
+        <button type="submit">Calcular</button>
+    </form>
+    
+    <h2 id="resultado"></h2>
+</div>
+    <script>
+        document.getElementById('form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Evita o envio do formulário
+            
+            const planoAntigo = parseFloat(document.getElementById('planoAntigo').value);
+            const planoNovo = parseFloat(document.getElementById('planoNovo').value);
+            const dataFixa = document.getElementById('dataFixa').value;
+
+            const dataAtual = 9; // Exemplo fixo, pode ser alterado conforme necessário
+            const dataAtualHoje = 10; // Exemplo fixo, pode ser alterado conforme necessário
+            const calcPropPlanoAntigo = planoAntigo / 30;
+            const propAntigo = calcPropPlanoAntigo * dataAtual;
+            const diasPropNovo = 30 - dataAtualHoje;
+            const calcPropPlanoNovo = planoNovo / 30;
+            const propNovo = calcPropPlanoNovo * dataAtualHoje;
+            const valorAtual = propAntigo + propNovo;
+            const casasDecimais = 2;
+            const resultadoFormatado = valorAtual.toFixed(casasDecimais);
+
+            let mensagem;
+            if (planoAntigo < planoNovo) {
+                mensagem = "Você está realizando um Upgrade";
+            } else {
+                mensagem = "Você está realizando um Downgrade";
+            }
+
+            document.getElementById('resultado').textContent = 
+                `${mensagem}. O valor do proporcional será de: R$${resultadoFormatado} com vencimento em ${dataFixa}/11/2024`;
+        });
+    </script>
+</body>
+</html>
